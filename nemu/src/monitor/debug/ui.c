@@ -215,7 +215,7 @@ static int cmd_x(char *args)
   printf("-- Scanning from vaddr:0x%x\n", target_addr);
   for (int i = 0; i < N; i++)
   {
-    printf("0x%08x: 0x%08x\n", target_addr, vaddr_read(target_addr, 4));
+    printf("0x%08x: 0x%08x\n", target_addr, vaddr_read(target_addr, 1));
     target_addr += 4;
   }
   return 0;
