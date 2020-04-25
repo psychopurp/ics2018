@@ -156,6 +156,7 @@ void ui_mainloop(int is_batch_mode)
 
 static int cmd_si(char *args)
 {
+  printf("%s\n", args);
   char *arg = strtok(NULL, " ");
   if (arg == NULL)
   {
