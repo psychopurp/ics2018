@@ -206,7 +206,6 @@ static int cmd_x(char *args)
   // uint32_t target_addr = expr(arg2, &success);
   char *str;
   uint32_t target_addr = strtol(arg2, &str, 16);
-  printf("%s", str);
 
   if (success == false)
   {
