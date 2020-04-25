@@ -44,7 +44,7 @@ static int cmd_q(char *args)
 static int cmd_help(char *args);
 static int cmd_si(char *args);
 static int cmd_info(char *args);
-// static int cmd_x(char *args);
+static int cmd_x(char *args);
 // static int cmd_p(char *args);
 // static int cmd_w(char *args);
 // static int cmd_d(char *args);
@@ -60,7 +60,7 @@ static struct
     {"q", "Exit NEMU", cmd_q},
     {"si", "si [N];execute [N] instructions step by step", cmd_si},
     {"info", "info r/w; print information aboud registers or watchpoint", cmd_info},
-    // {"x", "x [N] [EXPR];scan the memory", cmd_x},
+    {"x", "x [N] [EXPR];scan the memory", cmd_x},
     // {"p", "p [EXPR]; 表达式求值", cmd_p},
     // {"w", "w [EXPR]; set the watchpoint", cmd_w},
     // {"d", "d [N]; delete the watchpoint", cmd_d}
@@ -154,6 +154,7 @@ void ui_mainloop(int is_batch_mode)
   }
 }
 
+//单步执行
 static int cmd_si(char *args)
 {
   char *arg = strtok(NULL, " ");
@@ -170,6 +171,7 @@ static int cmd_si(char *args)
   }
 }
 
+//打印寄存器
 static int cmd_info(char *args)
 {
   char *arg = strtok(NULL, " ");
@@ -185,6 +187,33 @@ static int cmd_info(char *args)
   }
   else if (strcmp("w", arg) == 0)
   {
+  }
+  return 0;
+}
+
+//扫描内存
+static int cmd_x(char *args)
+{
+  char *arg1 = strtok(NULL, " ");
+  char *arg2 = strtok(NULL, "");
+  if (arg1 == NULL || arg2 == NULL)
+  {
+    printf("Format: x [N] [EXPR]\n");
+    return 0;
+  }
+  int N = atoi(arg1);
+  bool success = true;
+  uint32_t target_addr = expr(arg2, &success);
+  if (success == false)
+  {
+    printf("Error: not a valid expr..\n");
+    return 0;
+  }
+  printf("-- Scanning from vaddr:0x%x\n", target_addr);
+  for (int i = 0; i < N; i++)
+  {
+    printf("0x%08x: 0x%08x\n", target_addr, vaddr_read(target_addr, 4));
+    target_addr += 4;
   }
   return 0;
 }
