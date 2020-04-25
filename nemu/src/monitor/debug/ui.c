@@ -222,6 +222,7 @@ static int cmd_x(char *args)
     for (int j = 0; j < 4; j++)
     {
       printf("0x%02x ", data & 0xff);
+      data = data >> 8;
     }
     target_addr += 4;
   }
