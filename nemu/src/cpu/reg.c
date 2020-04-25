@@ -44,3 +44,9 @@ void reg_test()
 
   assert(eip_sample == cpu.eip);
 }
+
+// 寄存器打印
+void reg_display()
+{
+  printf("$eip: 0x%08x\n", cpu.eip);
+}

@@ -43,7 +43,7 @@ static int cmd_q(char *args)
 
 static int cmd_help(char *args);
 static int cmd_si(char *args);
-// static int cmd_info(char *args);
+static int cmd_info(char *args);
 // static int cmd_x(char *args);
 // static int cmd_p(char *args);
 // static int cmd_w(char *args);
@@ -59,7 +59,7 @@ static struct
     {"c", "Continue the execution of the program", cmd_c},
     {"q", "Exit NEMU", cmd_q},
     {"si", "si [N];execute [N] instructions step by step", cmd_si},
-    // {"info", "info r/w; print information aboud registers or watchpoint", cmd_info},
+    {"info", "info r/w; print information aboud registers or watchpoint", cmd_info},
     // {"x", "x [N] [EXPR];scan the memory", cmd_x},
     // {"p", "p [EXPR]; 表达式求值", cmd_p},
     // {"w", "w [EXPR]; set the watchpoint", cmd_w},
@@ -156,7 +156,6 @@ void ui_mainloop(int is_batch_mode)
 
 static int cmd_si(char *args)
 {
-  printf("%s\n", args);
   char *arg = strtok(NULL, " ");
   if (arg == NULL)
   {
@@ -169,4 +168,23 @@ static int cmd_si(char *args)
     cpu_exec(num);
     return 0;
   }
+}
+
+static int cmd_info(char *args)
+{
+  char *arg = strtok(NULL, " ");
+  if (arg == NULL)
+  {
+    printf("Format : info r | info w\n");
+    return 0;
+  }
+  if (strcmp("r", arg) == 0)
+  {
+    extern void reg_display();
+    reg_display();
+  }
+  else if (strcmp("w", arg) == 0)
+  {
+  }
+  return 0;
 }
