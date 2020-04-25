@@ -202,7 +202,7 @@ static int cmd_x(char *args)
     return 0;
   }
   int N = atoi(arg1);
-  bool *success = &(bool){true};
+  bool *success = &(bool){false};
   uint32_t target_addr = expr(arg2, success);
   if (success == false)
   {
