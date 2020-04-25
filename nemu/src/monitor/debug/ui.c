@@ -207,7 +207,7 @@ static int cmd_x(char *args)
   // char *str;
   // uint32_t target_addr = strtol(arg2, &str, 16);
 
-  if (success == false)
+  if (success != false)
   {
     printf("Error: not a valid expr..\n");
     return 0;
