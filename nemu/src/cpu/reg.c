@@ -51,6 +51,6 @@ void reg_display()
   printf("$eip: 0x%08x\n", cpu.eip);
   for (int i = 0; i < 8; i++)
   {
-    printf("$%s: 0x%08x, $%s: 0x%04x, $%s: 0x%02x\n", reg_name(i, 4), cpu.gpr[i]._32, reg_name(i, 2), cpu.gpr[i]._16, reg_name(i, 1), cpu.gpr[i]._8[i / 4]);
-    }
+    printf("$%s: 0x%x, $%s: 0x%x, $%s: 0x%x\n", reg_name(i, 4), cpu.gpr[i]._32, reg_name(i, 2), cpu.gpr[i]._16, reg_name(i, 1), cpu.gpr[i]._8[i / 4]);
+  }
 }
