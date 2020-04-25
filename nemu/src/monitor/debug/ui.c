@@ -203,9 +203,9 @@ static int cmd_x(char *args)
   }
   int N = atoi(arg1);
   bool success = true;
-  // uint32_t target_addr = expr(arg2, &success);
-  char *str;
-  uint32_t target_addr = strtol(arg2, &str, 16);
+  uint32_t target_addr = expr(arg2, &success);
+  // char *str;
+  // uint32_t target_addr = strtol(arg2, &str, 16);
 
   if (success == false)
   {
