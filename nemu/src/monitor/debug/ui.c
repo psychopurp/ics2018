@@ -217,6 +217,7 @@ static int cmd_x(char *args)
   {
     //从该地址读取4个字节
     uint32_t data = vaddr_read(target_addr, 4);
+    printf("data 0x%08x \n", data);
     printf("0x%08x: ", target_addr);
     for (int j = 0; j < 4; j++)
     {
