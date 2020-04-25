@@ -202,8 +202,8 @@ static int cmd_x(char *args)
     return 0;
   }
   int N = atoi(arg1);
-  bool success = true;
-  uint32_t target_addr = expr(arg2, &success);
+  bool *success = &(bool){true};
+  uint32_t target_addr = expr(arg2, success);
   if (success == false)
   {
     printf("Error: not a valid expr..\n");
