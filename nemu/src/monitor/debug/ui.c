@@ -195,7 +195,7 @@ static int cmd_info(char *args)
 static int cmd_x(char *args)
 {
   char *arg1 = strtok(NULL, " ");
-  char *arg2 = strtok(NULL, "");
+  char *arg2 = strtok(NULL, " ");
   if (arg1 == NULL || arg2 == NULL)
   {
     printf("Format: x [N] [EXPR]\n");
@@ -204,6 +204,7 @@ static int cmd_x(char *args)
   int N = atoi(arg1);
   bool *success = &(bool){false};
   uint32_t target_addr = expr(arg2, success);
+
   if (*success == false)
   {
     printf("Error: not a valid expr..\n");
