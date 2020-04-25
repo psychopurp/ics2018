@@ -215,7 +215,13 @@ static int cmd_x(char *args)
   printf("-- Scanning from vaddr:0x%x\n", target_addr);
   for (int i = 0; i < N; i++)
   {
-    printf("0x%08x: 0x%08x\n", target_addr, vaddr_read(target_addr, 4));
+    //从该地址读取4个字节
+    uint32_t data = vaddr_read(target_addr, 4);
+    printf("0x%08x: ", target_addr);
+    for (int j = 0; j < 4; j++)
+    {
+      printf("0x%02x ", data & 0xff);
+    }
     target_addr += 4;
   }
   return 0;
