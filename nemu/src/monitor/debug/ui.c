@@ -234,6 +234,12 @@ static int cmd_p(char *args)
 {
 
   bool success = false;
+  char *arg = strtok(NULL, "");
+  if (arg == NULL)
+  {
+    printf("Format: p [EXPR]\n");
+    return 0;
+  }
   uint32_t res = expr(args, &success);
   if (success == false)
   {
