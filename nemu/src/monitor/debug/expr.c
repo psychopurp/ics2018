@@ -372,11 +372,11 @@ uint32_t expr(char *e, bool *success)
       tokens[i].level = 6;
     }
   }
-  printf("%d\n", nr_token);
-  for (int i = 0; i < nr_token; i++)
-  {
-    printf("%d\n", tokens[i].type);
-  }
+  // printf("%d\n", nr_token);
+  // for (int i = 0; i < nr_token; i++)
+  // {
+  //   printf("%d\n", tokens[i].type);
+  // }
 
   return caculation(0, nr_token - 1, success);
 }
