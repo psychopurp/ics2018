@@ -45,7 +45,7 @@ static int cmd_help(char *args);
 static int cmd_si(char *args);
 static int cmd_info(char *args);
 static int cmd_x(char *args);
-// static int cmd_p(char *args);
+static int cmd_p(char *args);
 // static int cmd_w(char *args);
 // static int cmd_d(char *args);
 
@@ -61,7 +61,7 @@ static struct
     {"si", "si [N];execute [N] instructions step by step", cmd_si},
     {"info", "info r/w; print information aboud registers or watchpoint", cmd_info},
     {"x", "x [N] [EXPR];scan the memory", cmd_x},
-    // {"p", "p [EXPR]; 表达式求值", cmd_p},
+    {"p", "p [EXPR]; 表达式求值", cmd_p},
     // {"w", "w [EXPR]; set the watchpoint", cmd_w},
     // {"d", "d [N]; delete the watchpoint", cmd_d}
 
@@ -226,5 +226,20 @@ static int cmd_x(char *args)
     printf("\n");
     target_addr += 4;
   }
+  return 0;
+}
+
+//表达式求值
+static int cmd_p(char *args)
+{
+
+  bool success = false;
+  uint32_t res = expr(args, &success);
+  if (success == false)
+  {
+    printf("Error: not a valid expr..\n");
+    return 0;
+  }
+  printf("res: 0x%08x\n", res);
   return 0;
 }
