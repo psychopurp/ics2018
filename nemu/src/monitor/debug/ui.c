@@ -46,8 +46,8 @@ static int cmd_si(char *args);
 static int cmd_info(char *args);
 static int cmd_x(char *args);
 static int cmd_p(char *args);
-// static int cmd_w(char *args);
-// static int cmd_d(char *args);
+static int cmd_w(char *args);
+static int cmd_d(char *args);
 
 static struct
 {
@@ -62,8 +62,8 @@ static struct
     {"info", "info r/w; print information aboud registers or watchpoint", cmd_info},
     {"x", "x [N] [EXPR];scan the memory", cmd_x},
     {"p", "p [EXPR]; 表达式求值", cmd_p},
-    // {"w", "w [EXPR]; set the watchpoint", cmd_w},
-    // {"d", "d [N]; delete the watchpoint", cmd_d}
+    {"w", "w [EXPR]; set the watchpoint", cmd_w},
+    {"d", "d [N]; delete the watchpoint", cmd_d}
 
     /* TODO: Add more commands */
 
@@ -187,6 +187,8 @@ static int cmd_info(char *args)
   }
   else if (strcmp("w", arg) == 0)
   {
+    print_wp();
+    return 0;
   }
   return 0;
 }
@@ -247,5 +249,43 @@ static int cmd_p(char *args)
     return 0;
   }
   printf("res: 0x%08x\n", res);
+  return 0;
+}
+
+static int cmd_w(char *args)
+{ //set watchpoint
+  if (args == NULL)
+  {
+    printf("Nothing to set!\n");
+    return 0;
+  }
+  bool success = true;
+  expr(args, &success);
+  if (!success)
+  {
+    printf("Illigal expression to caculate!\n");
+    return 0;
+  }
+  new_wp(args);
+  return 0;
+}
+
+static int cmd_d(char *args)
+{ //delete watchpoiot
+  if (args == NULL)
+  {
+    printf("Nothing to delete!\n");
+    return 0;
+  }
+  int n = atoi(args);
+  bool success = free_wp(n);
+  if (success)
+  {
+    printf("Success delete watchpoint %d\n", n);
+  }
+  else
+  {
+    printf("error: no watchpoint %d\n", n);
+  }
   return 0;
 }
