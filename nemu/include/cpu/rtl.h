@@ -210,37 +210,55 @@ static inline void rtl_pop(rtlreg_t *dest)
 static inline void rtl_eq0(rtlreg_t *dest, const rtlreg_t *src1)
 {
   // dest <- (src1 == 0 ? 1 : 0)
-  TODO();
+  // TODO();
+  rtl_sltui(dest, src1, 1);
+  //使用RTL的比较指令（寄存器*立即数）进行实现：src<1,dest=1; 否则=0
+  //可以是同rtl_eq0(dest,dest)进行dest为1/0的翻转
 }
 
 static inline void rtl_eqi(rtlreg_t *dest, const rtlreg_t *src1, int imm)
 {
   // dest <- (src1 == imm ? 1 : 0)
-  TODO();
+  // TODO();
+  //使用RTL的异或指令进行判断（寄存器-立即数）
+  rtl_xori(dest, src1, imm);
+  rtl_eq0(dest, dest);
 }
 
 static inline void rtl_neq0(rtlreg_t *dest, const rtlreg_t *src1)
 {
   // dest <- (src1 != 0 ? 1 : 0)
-  TODO();
+  // TODO();
+  rtl_eq0(dest, src1);
+  rtl_eq0(dest, dest);
 }
 
 static inline void rtl_msb(rtlreg_t *dest, const rtlreg_t *src1, int width)
 {
   // dest <- src1[width * 8 - 1]
-  TODO();
+  // TODO();
+  rtl_shri(dest, src1, width * 8 - 1); //右移
+  rtl_andi(dest, dest, 0x1);           //保留最后一位，即src1[width*8-1]
 }
 
 static inline void rtl_update_ZF(const rtlreg_t *result, int width)
 {
   // eflags.ZF <- is_zero(result[width * 8 - 1 .. 0])
-  TODO();
+  // TODO();
+  assert(result != &t0);
+  //取result的后width个字节，可类比vaddr_read的实现
+  rtl_andi(&t0, result, (0xffffffffu >> (4 - width) * 8));
+  rtl_eq0(&t0, &t0); //判断是否为0
+  rtl_set_ZF(&t0);
 }
 
 static inline void rtl_update_SF(const rtlreg_t *result, int width)
 {
   // eflags.SF <- is_sign(result[width * 8 - 1 .. 0])
-  TODO();
+  // TODO();
+  assert(result != &t0);
+  rtl_msb(&t0, result, width);
+  rtl_set_SF(&t0);
 }
 
 static inline void rtl_update_ZFSF(const rtlreg_t *result, int width)

@@ -38,8 +38,10 @@ make_EHelper(call)
 
 make_EHelper(ret)
 {
-  TODO();
-
+  // TODO();
+  rtl_pop(&t2);
+  decoding.jmp_eip = t2; //用栈的数据修改EIP
+  decoding.is_jmp = 1;   //设置is_jmp标志
   print_asm("ret");
 }
 
