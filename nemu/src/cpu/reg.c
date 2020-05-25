@@ -8,14 +8,17 @@ const char *regsl[] = {"eax", "ecx", "edx", "ebx", "esp", "ebp", "esi", "edi"};
 const char *regsw[] = {"ax", "cx", "dx", "bx", "sp", "bp", "si", "di"};
 const char *regsb[] = {"al", "cl", "dl", "bl", "ah", "ch", "dh", "bh"};
 
-void reg_test() {
+//寄存器检查
+void reg_test()
+{
   srand(time(0));
   uint32_t sample[8];
   uint32_t eip_sample = rand();
   cpu.eip = eip_sample;
 
   int i;
-  for (i = R_EAX; i <= R_EDI; i ++) {
+  for (i = R_EAX; i <= R_EDI; i++)
+  {
     sample[i] = rand();
     reg_l(i) = sample[i];
     assert(reg_w(i) == (sample[i] & 0xffff));
@@ -40,4 +43,14 @@ void reg_test() {
   assert(sample[R_EDI] == cpu.edi);
 
   assert(eip_sample == cpu.eip);
+}
+
+// 寄存器打印
+void reg_display()
+{
+  printf("$eip: 0x%08x\n", cpu.eip);
+  for (int i = 0; i < 8; i++)
+  {
+    printf("$%s: 0x%x, $%s: 0x%x, $%s: 0x%x\n", reg_name(i, 4), cpu.gpr[i]._32, reg_name(i, 2), cpu.gpr[i]._16, reg_name(i, 1), cpu.gpr[i]._8[i / 4]);
+  }
 }
