@@ -8,14 +8,16 @@ make_EHelper(mov)
 
 make_EHelper(push)
 {
-  TODO();
+  // TODO();
   rtl_push(&id_dest->val);
   print_asm_template1(push);
 }
 
 make_EHelper(pop)
 {
-  TODO();
+  // TODO();
+  rtl_pop(&t2);                //使用临时寄存器保存值
+  operand_write(id_dest, &t2); //使用operand_write执行写操作
 
   print_asm_template1(pop);
 }
