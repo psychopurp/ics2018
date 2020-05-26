@@ -177,7 +177,8 @@ make_rtl_setget_eflags(CF)
 static inline void rtl_not(rtlreg_t *dest)
 {
   // dest <- ~dest
-  TODO();
+  // TODO();
+  *dest = ~*dest;
 }
 
 static inline void rtl_sext(rtlreg_t *dest, const rtlreg_t *src1, int width)
