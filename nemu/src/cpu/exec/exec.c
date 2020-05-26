@@ -51,7 +51,7 @@ static make_EHelper(2byte_esc);
 
 /* 0x80, 0x81, 0x83 */
 make_group(gp1,
-           EX(add), EMPTY, EMPTY, EMPTY,
+           EX(add), EMPTY, EMPTY, EX(adc),
            EX(and), EX(sub), EX(xor), EX(cmp))
 
     /* 0xc0, 0xc1, 0xd0, 0xd1, 0xd2, 0xd3 */
@@ -86,7 +86,7 @@ make_group(gp1,
         /* 0x04 */ IDEXW(I2a, add, 1), IDEX(I2a, add), EMPTY, EMPTY,
         /* 0x08 */ EMPTY, EMPTY, EMPTY, EMPTY,
         /* 0x0c */ EMPTY, EMPTY, EMPTY, EX(2byte_esc),
-        /* 0x10 */ EMPTY, EMPTY, EMPTY, EMPTY,
+        /* 0x10 */ EMPTY, EMPTY, EMPTY, IDEX(E2G, adc),
         /* 0x14 */ EMPTY, EMPTY, EMPTY, EMPTY,
         /* 0x18 */ EMPTY, EMPTY, EMPTY, EMPTY,
         /* 0x1c */ EMPTY, EMPTY, EMPTY, EMPTY,
