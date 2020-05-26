@@ -2,7 +2,24 @@
 static inline void elfags_modify();
 make_EHelper(add)
 {
-  TODO();
+  // TODO();
+  rtl_add(&t2, &id_dest->val, &id_src->val);
+  operand_write(id_dest, &t2);
+
+  //ZF SF
+  rtl_update_ZFSF(&t2, id_dest->width);
+
+  //CF
+  //CF=1的判断：1+1=0 进位
+  rtl_sltu(&t0, &t2, &id_dest->val);
+  rtl_set_CF(&t0);
+
+  //OF 的判断：正+正=负 或 负+负=正 时为发生溢出
+  rtl_xor(&t0, &id_src->val, &t2);
+  rtl_xor(&t1, &id_dest->val, &t2);
+  rtl_and(&t0, &t0, &t1);
+  rtl_msb(&t0, &t0, id_dest->width);
+  rtl_set_OF(&t0);
 
   print_asm_template2(add);
 }
