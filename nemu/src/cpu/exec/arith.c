@@ -35,7 +35,8 @@ make_EHelper(sub)
 
 make_EHelper(cmp)
 {
-  TODO();
+  // TODO();
+  elfags_modify();
 
   print_asm_template2(cmp);
 }
