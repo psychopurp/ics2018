@@ -27,6 +27,7 @@ make_EHelper(or);
 make_EHelper(sar);
 make_EHelper(shl);
 make_EHelper(shr);
+make_EHelper(dec);
 // data-mov
 // make_EHelper(push);
 // make_EHelper(pop);
