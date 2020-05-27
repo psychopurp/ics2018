@@ -31,6 +31,8 @@ make_EHelper(dec);
 make_EHelper(leave);
 make_EHelper(not);
 make_EHelper(inc);
+make_EHelper(jmp);
+make_EHelper(jmp_rm);
 // data-mov
 // make_EHelper(push);
 // make_EHelper(pop);
