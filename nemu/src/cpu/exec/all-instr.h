@@ -42,6 +42,8 @@ make_EHelper(cwtl);
 make_EHelper(idiv);
 make_EHelper(movsx);
 make_EHelper(sbb);
+make_EHelper(call_rm);
+make_EHelper(call);
 // data-mov
 // make_EHelper(push);
 // make_EHelper(pop);
