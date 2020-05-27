@@ -45,6 +45,7 @@ make_EHelper(sbb);
 make_EHelper(call_rm);
 make_EHelper(call);
 make_EHelper(div);
+make_EHelper(neg);
 // data-mov
 // make_EHelper(push);
 // make_EHelper(pop);
