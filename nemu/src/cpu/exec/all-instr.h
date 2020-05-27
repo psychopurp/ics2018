@@ -33,6 +33,10 @@ make_EHelper(not);
 make_EHelper(inc);
 make_EHelper(jmp);
 make_EHelper(jmp_rm);
+make_EHelper(imul1);
+make_EHelper(imul2);
+make_EHelper(imul3);
+make_EHelper(mul);
 // data-mov
 // make_EHelper(push);
 // make_EHelper(pop);
