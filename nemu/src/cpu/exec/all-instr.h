@@ -37,6 +37,8 @@ make_EHelper(imul1);
 make_EHelper(imul2);
 make_EHelper(imul3);
 make_EHelper(mul);
+make_EHelper(cltd);
+make_EHelper(cwtl);
 // data-mov
 // make_EHelper(push);
 // make_EHelper(pop);
