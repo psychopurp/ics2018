@@ -29,6 +29,7 @@ make_EHelper(shl);
 make_EHelper(shr);
 make_EHelper(dec);
 make_EHelper(leave);
+make_EHelper(not);
 // data-mov
 // make_EHelper(push);
 // make_EHelper(pop);
