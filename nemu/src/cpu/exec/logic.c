@@ -112,3 +112,24 @@ make_EHelper(not)
   operand_write(id_dest, &id_dest->val);
   print_asm_template1(not);
 }
+
+make_EHelper(rol)
+{
+  // TODO();
+  int i = 0;
+  rtl_mv(&t1, &id_dest->val);
+  for (i = 0; i < id_src->val; ++i)
+  {
+    rtl_msb(&t0, &t1, id_dest->width);
+    rtl_shli(&t1, &t1, 1);
+    rtl_or(&t1, &t1, &t0);
+  }
+
+  operand_write(id_dest, &t1);
+  rtl_set_CF(&t0);
+  rtl_msb(&t1, &t1, id_dest->width);
+  rtl_xor(&t0, &t1, &t0);
+  rtl_set_OF(&t0);
+
+  print_asm_template1(not);
+}
