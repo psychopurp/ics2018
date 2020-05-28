@@ -45,7 +45,6 @@ int _read_key()
   }
   else
   {
-
     return _KEY_NONE;
   }
 }
