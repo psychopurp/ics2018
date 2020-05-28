@@ -1,5 +1,4 @@
 #include "cpu/exec.h"
-#include "device/port-io.h"
 
 void diff_test_skip_qemu();
 void diff_test_skip_nemu();
@@ -53,21 +52,7 @@ void pio_write(ioaddr_t, int, uint32_t);
 make_EHelper(in)
 {
   // TODO();
-  switch (id_src->width)
-  {
-  case 4:
-    t0 = pio_read_l(id_src->val);
-    break;
-  case 1:
-    t0 = pio_read_b(id_src->val);
-    break;
-  case 2:
-    t0 = pio_read_w(id_src->val);
-    break;
-  default:
-    assert(0);
-  }
-
+  rtl_li(&t0, pio_read(id_src->val, id_dest->width));
   operand_write(id_dest, &t0);
 
   print_asm_template2(in);
@@ -80,22 +65,8 @@ make_EHelper(in)
 make_EHelper(out)
 {
   // TODO();
-  operand_write(id_dest, &id_src->val);
+  pio_write(id_dest->val, id_src->width, id_src->val);
 
-  switch (id_src->width)
-  {
-  case 4:
-    pio_write_l(id_dest->val, id_src->val);
-    break;
-  case 1:
-    pio_write_b(id_dest->val, id_src->val);
-    break;
-  case 2:
-    pio_write_w(id_dest->val, id_src->val);
-    break;
-  default:
-    assert(0);
-  }
   print_asm_template2(out);
 
 #ifdef DIFF_TEST
