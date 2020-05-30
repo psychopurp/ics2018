@@ -8,7 +8,7 @@ static _RegSet *do_event(_Event e, _RegSet *r)
   case _EVENT_SYSCALL:
     return do_syscall(r);
   default:
-    panic("Unhandled event IDtest = %d", e.event);
+    panic("Unhandled event ID = %d", e.event);
   }
 
   return NULL;
