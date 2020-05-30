@@ -17,6 +17,7 @@ _RegSet *do_syscall(_RegSet *r)
   {
   case SYS_none:
     SYSCALL_ARG1(r) = sys_none();
+    break;
   default:
     panic("Unhandled syscall ID = %d", a[0]);
   }
