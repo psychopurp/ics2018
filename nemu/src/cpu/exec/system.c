@@ -40,6 +40,7 @@ make_EHelper(int)
 {
   // TODO();
   uint8_t NO = id_dest->val & 0xff;
+  Log("NO %d", NO);
   raise_intr(NO, decoding.seq_eip);
 
   print_asm("int %s", id_dest->str);
