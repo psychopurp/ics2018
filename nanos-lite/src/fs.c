@@ -78,7 +78,7 @@ int fs_open(const char *filename, int flags, int mode)
     if (strcmp(filename, file_table[i].name) == 0)
       return i;
   }
-  panic("this filename not exist");
+  panic("this filename not exist %s", filename);
   return -1;
 }
 
