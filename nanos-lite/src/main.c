@@ -1,7 +1,7 @@
 #include "common.h"
 
 /* Uncomment these macros to enable corresponding functionality. */
-//#define HAS_ASYE
+#define HAS_ASYE
 //#define HAS_PTE
 
 void init_mm(void);
@@ -11,7 +11,8 @@ void init_irq(void);
 void init_fs(void);
 uint32_t loader(_Protect *, const char *);
 
-int main() {
+int main()
+{
 #ifdef HAS_PTE
   init_mm();
 #endif
