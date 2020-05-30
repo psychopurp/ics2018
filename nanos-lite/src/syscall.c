@@ -1,5 +1,9 @@
 #include "common.h"
 #include "syscall.h"
+int sys_none()
+{
+  return 1;
+}
 
 _RegSet *do_syscall(_RegSet *r)
 {
@@ -11,6 +15,8 @@ _RegSet *do_syscall(_RegSet *r)
 
   switch (a[0])
   {
+  case SYS_none:
+    SYSCALL_ARG1(r) = sys_none();
   default:
     panic("Unhandled syscall ID = %d", a[0]);
   }
