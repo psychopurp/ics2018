@@ -43,6 +43,7 @@ _RegSet *do_syscall(_RegSet *r)
     sys_exit(a[1]);
     break;
   case SYS_write:
+    Log("this is sswrite");
     SYSCALL_ARG1(r) = sys_write(a[1], (void *)a[2], a[3]);
     break;
   default:
