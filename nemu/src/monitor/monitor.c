@@ -89,6 +89,7 @@ static inline void load_img()
 static inline void restart()
 {
   /* Set the initial instruction pointer. */
+  cpu.cs = 8;
   cpu.eip = ENTRY_START;
   //进行eflags的初始化
   unsigned int origin = 2;
