@@ -8,9 +8,7 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr)
    */
 
   // TODO();
-  memcpy(&t1, &cpu.eflags, sizeof(cpu.eflags));
-  rtl_li(&t0, t1);
-  rtl_push(&t0);
+  rtl_push(&cpu.eflags);
   rtl_push(&cpu.cs);
   rtl_li(&t0, ret_addr);
   rtl_push(&t0);
