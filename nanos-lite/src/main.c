@@ -31,7 +31,7 @@ int main()
 
   init_fs();
 
-  uint32_t entry = loader(NULL, "/bin/hello/hello-x86");
+  uint32_t entry = loader(NULL, "/bin/text");
   ((void (*)(void))entry)();
 
   panic("Should not reach here");
