@@ -76,7 +76,7 @@ make_group(gp1,
 
     /* 0x0f 0x01*/
     make_group(gp7,
-               EMPTY, EMPTY, EMPTY, EMPTY,
+               EMPTY, EMPTY, EMPTY, IDEX(lidt_a, lidt),
                EMPTY, EMPTY, EMPTY, EMPTY)
 
     /* TODO: Add more instructions!!! */

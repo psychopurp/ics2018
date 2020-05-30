@@ -57,29 +57,41 @@ typedef struct
       uint16_t _16;
       uint8_t _8[2];
     } gpr[8];
+
     struct
     {
       rtlreg_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
-    };
+      vaddr_t eip;
+
+      //实现eflags寄存器
+      union {
+        struct
+        {
+          unsigned int CF : 1;
+          unsigned int one : 1; //理论上保持为1，可以用来验证下初始化
+          unsigned int : 4;
+          unsigned int ZF : 1;
+          unsigned int SF : 1; //bin 0-7
+
+          unsigned int : 1;
+          unsigned int IF : 1;
+          unsigned int : 1;
+          unsigned int OF : 1;
+          unsigned int : 20; //bin 8-31
+        };
+        unsigned int eflags;
+      };
+
+      rtlreg_t cs;
+      //实现IDTR寄存器
+      struct IDTR
+      {
+        uint32_t base;
+        uint16_t limit; //IDT的首地址和长度
+
+      } idtr;
+        };
   };
-
-  vaddr_t eip;
-
-  //实现eflags寄存器
-  struct bs
-  {
-    unsigned int CF : 1;
-    unsigned int one : 1; //理论上保持为1，可以用来验证下初始化
-    unsigned int : 4;
-    unsigned int ZF : 1;
-    unsigned int SF : 1; //bin 0-7
-
-    unsigned int : 1;
-    unsigned int IF : 1;
-    unsigned int : 1;
-    unsigned int OF : 1;
-    unsigned int : 20; //bin 8-31
-  } eflags;
 
 } CPU_state;
 

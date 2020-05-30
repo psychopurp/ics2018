@@ -49,6 +49,8 @@ make_EHelper(neg);
 make_EHelper(in);
 make_EHelper(out);
 make_EHelper(rol);
+make_EHelper(lidt);
+make_EHelper(int);
 // data-mov
 // make_EHelper(push);
 // make_EHelper(pop);
