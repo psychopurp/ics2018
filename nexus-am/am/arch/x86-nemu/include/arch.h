@@ -18,7 +18,7 @@ struct _RegSet
   uintptr_t eflags;
 };
 
-#define SYSCALL_ARG1(r) 0
+#define SYSCALL_ARG1(r) r->eax
 #define SYSCALL_ARG2(r) 0
 #define SYSCALL_ARG3(r) 0
 #define SYSCALL_ARG4(r) 0
