@@ -75,6 +75,7 @@ int fs_open(const char *filename, int flags, int mode)
   //根据文件名查找索引
   for (int i = 0; i < NR_FILES; i++)
   {
+    Log("filename=%s   table=%s", filename, file_table[i].name);
     if (strcmp(filename, file_table[i].name) == 0)
       return i;
   }
