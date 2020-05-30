@@ -11,10 +11,11 @@ void sys_exit(int a)
 
 int sys_write(int fd, void *buf, size_t len)
 {
+  Log("buffer:%s", (char *)buf);
   if (fd == 1 || fd == 2)
   {
     char c;
-    Log("buffer:%s", (char *)buf);
+
     for (int i = 0; i < len; i++)
     {
       memcpy(&c, buf + i, 1);
