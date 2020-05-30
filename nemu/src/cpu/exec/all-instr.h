@@ -51,6 +51,8 @@ make_EHelper(out);
 make_EHelper(rol);
 make_EHelper(lidt);
 make_EHelper(int);
+make_EHelper(pusha);
+// make_EHelper(popa);
 // data-mov
 // make_EHelper(push);
 // make_EHelper(pop);
