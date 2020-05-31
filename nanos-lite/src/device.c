@@ -64,5 +64,5 @@ void init_device()
   int width = 0, height = 0;
   getScreen(&width, &height);
   // Log("WIDHT:%d\nHEIGHT:%d\n", width, height);
-  sprintf(dispinfo, "WIDHT:%d\nHEIGHT:%d\n", width, height);
+  sprintf(dispinfo, "WIDTH:%d\nHEIGHT:%d\n", width, height);
 }
