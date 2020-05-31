@@ -4,6 +4,7 @@ extern void ramdisk_read(void *buf, off_t offset, size_t len);
 extern void ramdisk_write(void *buf, off_t offset, size_t len);
 void dispinfo_read(void *buf, off_t offset, size_t len);
 void fb_write(const void *buf, off_t offset, size_t len);
+size_t events_read(void *buf, size_t len);
 
 typedef struct
 {
@@ -101,6 +102,11 @@ ssize_t fs_read(int fd, void *buf, size_t len)
     Log("arg invalid:fd<3 || df==FD_FB");
     return 0;
   }
+  if (fd == FD_EVENTS)
+  {
+    return events_read(buf, len);
+  }
+
   int n = fs_filesz(fd) - get_open_offset(fd);
   if (n > len)
     n = len;
