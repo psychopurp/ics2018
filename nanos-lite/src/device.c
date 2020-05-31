@@ -22,6 +22,7 @@ void dispinfo_read(void *buf, off_t offset, size_t len)
 extern void getScreen(int *p_width, int *p_height);
 void fb_write(const void *buf, off_t offset, size_t len)
 {
+  Log("test----------");
   assert(offset % 4 == 0 && len % 4 == 0);
   int index, screen_x1, screen_y1, screen_y2;
   int width = 0, height = 0;
@@ -32,7 +33,7 @@ void fb_write(const void *buf, off_t offset, size_t len)
   screen_x1 = index % width;
   index = (offset + len) / 4;
   screen_y2 = index / width;
-  Log("test----------");
+
   assert(screen_y2 >= screen_y1);
   //共一行
   if (screen_y2 == screen_y1)
