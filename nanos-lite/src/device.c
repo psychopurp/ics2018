@@ -32,7 +32,7 @@ void fb_write(const void *buf, off_t offset, size_t len)
   screen_x1 = index % width;
   index = (offset + len) / 4;
   screen_y2 = index / width;
-  assert(screen_y2 >= screen_y1);
+  // assert(screen_y2 >= screen_y1);
   //共一行
   if (screen_y2 == screen_y1)
   {
