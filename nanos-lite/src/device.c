@@ -32,6 +32,7 @@ void fb_write(const void *buf, off_t offset, size_t len)
   screen_x1 = index % width;
   index = (offset + len) / 4;
   screen_y2 = index / width;
+  Log("test----------");
   assert(screen_y2 >= screen_y1);
   //共一行
   if (screen_y2 == screen_y1)
@@ -62,6 +63,6 @@ void init_device()
   // described in the Navy-apps convention
   int width = 0, height = 0;
   getScreen(&width, &height);
-  Log("WIDHT:%d\nHEIGHT:%d\n", width, height);
+  // Log("WIDHT:%d\nHEIGHT:%d\n", width, height);
   sprintf(dispinfo, "WIDHT:%d\nHEIGHT:%d\n", width, height);
 }
