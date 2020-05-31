@@ -16,13 +16,13 @@ static char dispinfo[128] __attribute__((used));
 
 void dispinfo_read(void *buf, off_t offset, size_t len)
 {
+  Log("-----------");
   strncpy(buf, dispinfo + offset, len);
 }
 
 extern void getScreen(int *p_width, int *p_height);
 void fb_write(const void *buf, off_t offset, size_t len)
 {
-  Log("test----------");
   assert(offset % 4 == 0 && len % 4 == 0);
   int index, screen_x1, screen_y1, screen_y2;
   int width = 0, height = 0;
