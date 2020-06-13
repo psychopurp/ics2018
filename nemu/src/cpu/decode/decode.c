@@ -380,7 +380,7 @@ make_DHelper(mov_load_cr)
 #endif
 }
 
-make_DHelper(mov_stroe_cr)
+make_DHelper(mov_store_cr)
 {
   decode_op_rm(eip, id_src, true, id_dest, false);
 
