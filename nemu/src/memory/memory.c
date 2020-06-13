@@ -102,46 +102,4 @@ static paddr_t page_translate(vaddr_t addr, bool is_write)
     return (pf & 0xfffff000) + offset;
   }
   return addr;
-  // // PDE pde, *pgdir;
-  // // PTE pte, *pgtable;
-  // // paddr_t paddr = addr;
-  // CR0 cr0 = (CR0)cpu.cr0;
-  // //保护模式+分页机制
-  // if (cr0.protect_enable && cr0.paging)
-  // {
-  //   CR3 cr3 = (CR3)cpu.cr3;
-  //   // 页目录表
-  //   PDE *pgdirs = (PDE *)(PTE_ADDR(cr3.val));
-  //   PDE pde = (PDE)paddr_read((uint32_t)(pgdirs + PDX(addr)), 4);
-  //   Assert(pde.present, "addr=0x%x", addr);
-
-  //   //二级页表
-  //   PTE *ptab = (PTE *)(PTE_ADDR(pde.val));
-  //   PTE pte = (PTE)paddr_read((uint32_t)(ptab + PTX(addr)), 4);
-  //   Assert(pte.present, "addr=0x%x", addr);
-
-  //   //设置accessed和dirty
-  //   pte.accessed = 1;
-  //   pde.accessed = 1;
-  //   if (is_write)
-  //     pte.dirty = 1;
-
-  //   //物理地址
-  //   paddr_t paddr = PTE_ADDR(pte.val) | OFF(addr);
-  //   return paddr;
-  //   // pgdir = (PDE *)PTE_ADDR(cpu.cr3.val);
-  //   // pde.val = paddr_read((uint32_t)&pgdir[PDX(add_mmio_map)], 4);
-  //   // assert(pde.present);
-  //   // pde.accessed = 1;
-
-  //   // pgtable = (PTE *)(PTE_ADDR(pde.val));
-  //   // pte.val = paddr_read((uint32_t)&pgtable[PTX(addr)], 4);
-
-  //   // assert(pte.present);
-  //   // pte.accessed = 1;
-
-  //   // pte.dirty = is_write ? 1 : pte.dirty;
-  //   // paddr = PTE_ADDR(pte.val) | OFF(addr);
-  // }
-  // return addr;
 }
