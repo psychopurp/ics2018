@@ -19,6 +19,7 @@ make_EHelper(pusha);
 make_EHelper(popa);
 make_EHelper(movsx);
 make_EHelper(movzx);
+make_EHelper(mov_store_cr);
 
 // // control
 make_EHelper(call);

@@ -91,6 +91,7 @@ static inline void restart()
   /* Set the initial instruction pointer. */
   cpu.cs = 8;
   cpu.eip = ENTRY_START;
+  cpu.cr0.val = 0x60000011;
   //进行eflags的初始化
   unsigned int origin = 2;
   memcpy(&cpu.eflags, &origin, sizeof(cpu.eflags));

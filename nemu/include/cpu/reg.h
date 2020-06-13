@@ -2,6 +2,7 @@
 #define __REG_H__
 
 #include "common.h"
+#include "memory/mmu.h"
 
 enum
 {
@@ -83,6 +84,7 @@ typedef struct
       };
 
       rtlreg_t cs;
+
       //实现IDTR寄存器
       struct IDTR
       {
@@ -90,9 +92,12 @@ typedef struct
         uint16_t limit; //IDT的首地址和长度
 
       } idtr;
-        };
+    };
   };
-
+  CR3 cr3;
+  CR0 cr0;
+  // uint32_t cr0;
+  // uint32_t cr3;
 } CPU_state;
 
 extern CPU_state cpu;

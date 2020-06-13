@@ -368,3 +368,23 @@ make_DHelper(lidt_a)
 {
   decode_op_a(eip, id_dest, true);
 }
+
+make_DHelper(mov_load_cr)
+{
+  decode_op_rm(eip, id_dest, false, id_src, false);
+  //单独加载cr寄存器中的值
+  rtl_load_cr(&id_src->val, id_src->reg);
+
+#ifdef DEBUG
+  snprintf(id_src->str, 5, "%%cr%d", id_dest->reg);
+#endif
+}
+
+make_DHelper(mov_stroe_cr)
+{
+  decode_op_rm(eip, id_src, true, id_dest, false);
+
+#ifdef DEBUG
+  snprintf(id_dest->str, 5, "%%cr%d", id_dest->reg);
+#endif
+}
