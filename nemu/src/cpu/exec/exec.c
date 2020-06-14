@@ -272,7 +272,6 @@ void exec_wrapper(bool print_flag)
   { //开中断且接收到中断信号
     cpu.INTR = false;
     extern void raise_intr(uint8_t NO, vaddr_t ret_addr);
-    Log("return INTR");
     raise_intr(TIME_IRQ, cpu.eip);
     update_eip();
   }
