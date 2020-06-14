@@ -30,8 +30,23 @@ void load_prog(const char *filename)
 _RegSet *schedule(_RegSet *prev)
 {
   if (current != NULL)
-    current->tf = prev;
-  current = (current == &pcb[0] ? &pcb[1] : &pcb[0]);
-  _switch(&current->as);
+    current->tf = prev; //保存当前进程的现场（及上下文）
+  else
+    current = &pcb[0]; //初始进程为pcb[0]
+
+  //进程切换frequency
+  static int num = 0;
+  static const int frequency = 1000;
+  if (current == &pcb[0])
+    num++; //若当前运行仙剑，则记录仙剑的运行次数
+  else
+    current = &pcb[0]; //否则切换为仙剑
+
+  if (num == frequency)
+  {
+    current = &pcb[1]; //切换为hello
+    num = 0;
+  }
+  _switch(&current->as); //切换地址空间
   return current->tf;
 }
