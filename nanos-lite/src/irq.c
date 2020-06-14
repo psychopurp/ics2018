@@ -13,7 +13,7 @@ static _RegSet *do_event(_Event e, _RegSet *r)
     printf("receive an event trap!\n");
     return schedule(r); //切换进程，schedule返回新进程的上下文
   case _EVENT_IRQ_TIME:
-    Log("event: IRQ_TIME!\n");
+    // Log("event: IRQ_TIME!\n");
     return schedule(r);
   default:
     panic("Unhandled event ID = %d", e.event);
