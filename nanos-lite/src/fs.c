@@ -86,7 +86,10 @@ int fs_open(const char *filename, int flags, int mode)
   {
     // Log("filename=%s   table=%s", filename, file_table[i].name);
     if (strcmp(filename, file_table[i].name) == 0)
+    {
+      file_table[i].open_offset = 0;
       return i;
+    }
   }
   panic("this filename not exist %s", filename);
   return -1;
