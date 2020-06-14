@@ -7,7 +7,8 @@ static _RegSet *do_event(_Event e, _RegSet *r)
   switch (e.event)
   {
   case _EVENT_SYSCALL:
-    return do_syscall(r);
+    do_syscall(r);
+    return schedule(r);
   case _EVENT_TRAP:
     printf("receive an event trap!\n");
     return schedule(r); //切换进程，schedule返回新进程的上下文
