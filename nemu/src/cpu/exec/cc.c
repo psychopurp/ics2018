@@ -30,29 +30,29 @@ void rtl_setcc(rtlreg_t *dest, uint8_t subcode)
   switch (subcode & 0xe)
   {
   case CC_O: //0
-    *dest = cpu.OF;
+    *dest = cpu.eflags.OF;
     break;
   case CC_B: //2
-    *dest = cpu.CF;
+    *dest = cpu.eflags.CF;
     break;
   case CC_E: //4
     //printf("i am here\n");
     //printf("zf = %d\n", cpu.eflags.ZF);
-    *dest = cpu.ZF;
+    *dest = cpu.eflags.ZF;
     break;
   case CC_BE: //6
     //printf("switch = %x\n", subcode&0xe);
-    *dest = ((cpu.CF) || (cpu.ZF));
+    *dest = ((cpu.eflags.CF) || (cpu.eflags.ZF));
     //printf("dest = %d\n", *dest);
     break;
   case CC_S: //8
-    *dest = cpu.SF;
+    *dest = cpu.eflags.SF;
     break;
   case CC_L: //12 c
-    *dest = (cpu.SF != cpu.OF);
+    *dest = (cpu.eflags.SF != cpu.eflags.OF);
     break;
   case CC_LE: //14 e
-    *dest = ((cpu.ZF) || (cpu.SF != cpu.OF));
+    *dest = ((cpu.eflags.ZF) || (cpu.eflags.SF != cpu.eflags.OF));
     break;
     // TODO();
   default:

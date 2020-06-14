@@ -62,38 +62,39 @@ typedef struct
     struct
     {
       rtlreg_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
-      vaddr_t eip;
-
-      //实现eflags寄存器
-      union {
-        struct
-        {
-          unsigned int CF : 1;
-          unsigned int one : 1; //理论上保持为1，可以用来验证下初始化
-          unsigned int : 4;
-          unsigned int ZF : 1;
-          unsigned int SF : 1; //bin 0-7
-
-          unsigned int : 1;
-          unsigned int IF : 1;
-          unsigned int : 1;
-          unsigned int OF : 1;
-          unsigned int : 20; //bin 8-31
-        };
-        unsigned int eflags;
-      };
-
-      rtlreg_t cs;
-
-      //实现IDTR寄存器
-      struct IDTR
-      {
-        uint32_t base;
-        uint16_t limit; //IDT的首地址和长度
-
-      } idtr;
     };
   };
+  vaddr_t eip;
+
+  //实现eflags寄存器	//eflags
+  union {
+    struct
+    {
+      unsigned int CF : 1;
+      unsigned int one : 1;
+      unsigned int : 4;
+      unsigned int ZF : 1;
+      unsigned int SF : 1;
+
+      unsigned int : 1;
+      unsigned int IF : 1;
+      unsigned int : 1;
+      unsigned int OF : 1;
+      unsigned int : 20;
+    };
+    unsigned int val;
+  } eflags;
+
+  rtlreg_t cs;
+
+  //实现IDTR寄存器
+  struct IDTR
+  {
+    uint32_t base;
+    uint16_t limit; //IDT的首地址和长度
+
+  } idtr;
+
   CR3 cr3;
   CR0 cr0;
   // uint32_t cr0;
