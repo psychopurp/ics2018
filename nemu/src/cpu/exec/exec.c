@@ -1,6 +1,7 @@
 #include "cpu/exec.h"
 #include "all-instr.h"
 
+#define TIME_IRQ 32 //时钟中断
 typedef struct
 {
   DHelper decode;
@@ -266,4 +267,12 @@ void exec_wrapper(bool print_flag)
   void difftest_step(uint32_t);
   difftest_step(eip);
 #endif
+
+  if (cpu.INTR & cpu.IF)
+  { //开中断且接收到中断信号
+    cpu.INTR = false;
+    extern void raise_intr(uint8_t NO, vaddr_t ret_addr);
+    raise_intr(TIME_IRQ, cpu.eip);
+    update_eip();
+  }
 }
